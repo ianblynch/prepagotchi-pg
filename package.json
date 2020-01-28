@@ -1,0 +1,60 @@
+{
+  "name": "story-cards-reader",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build:assets": "robocopy .\\src\\assets\\pngs\\ .\\phonegap-build\\www\\img\\ /e /z",
+    "build": "vue-cli-service build&&npm run build:assets&&webpack",
+    "lint": "vue-cli-service lint",
+    "build:svgstore": "npx svgstore-cli -o ./src/assets/svg-definition.svg --inline ./src/assets/svg/*.svg",
+    "artifact": "set NODE_ENV=production&&npm run build:webpack&&npm run zip",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "zip": "build\\7za.exe a -tzip uploadToPhoneGapBuild.zip phonegap-build\\*"
+  },
+  "dependencies": {
+    "core-js": "^2.6.5",
+    "local-storage": "^2.0.0",
+    "merge-images": "^1.1.0",
+    "tailwind": "^4.0.0",
+    "textfit": "^2.4.0",
+    "uuid": "^3.3.3",
+    "vue": "^2.6.11",
+    "vue-markdown": "git+https://github.com/ianblynch/vue-markdown.git",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.10.0",
+    "@vue/cli-plugin-eslint": "^3.10.0",
+    "@vue/cli-service": "^3.10.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-cli-plugin-cordova": "^2.4.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}

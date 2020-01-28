@@ -1,0 +1,7 @@
+node_modules
+dist
+phonegap-build
+# Cordova
+/src-cordova/platforms
+/src-cordova/plugins
+/public/cordova.js

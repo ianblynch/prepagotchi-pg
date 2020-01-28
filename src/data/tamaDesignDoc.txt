@@ -1,0 +1,122 @@
+Then I will make editor for radiation
+
+
+I do all to put into phone gap
+Make white frame
+Title screen
+X Set border, padding dynamically
+PowerStartAndStop: check flex (might be fine)
+Shoot: check flex (might be fine)
+Start Kickstarter
+Make background images into html elements so we can animate them
+X button labels
+Add yellow background to top and bottom?
+XCleanup CWB
+X disable button clicks when transitioning from TamaNexus to gameCard
+
+X Fix classic wheelchair ball not going 100% height
+X Fix screen not resizing when aspect ratio is very narrow
+X consolidate and check event listeners to one call per event (onResize(), onClick())
+X add this.setImageRendering() to each card's onResize()
+
+make the sprites cuter/heads bigger
+
+Edits for each card:
+X ScoreTransCard: fix flex
+X Lead: fix flex to space evenly
+
+X Socialize: fix flex
+X Lift: fix flex
+
+X Dribbling: set new ball x, y on resize
+X Eat: set new meat x, y on resize
+
+X Stats: broken fix flex
+
+X Socialize: fix image resize weird on resize
+X Lift: fix image resize weird on resize
+
+X Dribbling, Eat: make img scale according to size of screen
+
+
+
+
+
+XMake the outer frame area fixed just like the middle flex area => can set it in the same setInnerWidth() in TamaHome
+XLight gray beyond or just fill it up with a subdued prepagotchi background
+
+XTest and refine ux
+XNormalize SocializeCard to match edits to LiftsCard
+XContinue replacing static text with MushyText components
+XMake frame and background
+
+X To start current game screen should be load screen, during this 
+it loads the local storage and sets the current screen
+
+X Icon zoom-in transition when select game
+X Screen resizes to consistently fit in different viewports
+X Egg hatches at beginning (enter name)
+X Idle animations on main screen
+X Fix egg hatch so the right egg is shown on initial load
+X Logic for 7 health meters (and when dies)
+X Add transitionFromGame() as end of all games like DribbleCard
+Title screen
+X Grave screen when dies
+X Figure out how to trigger - set timeout
+
+1. Compose TheClassicWheelchairBall tidbits as progression rewards
+2. set criteria and watchers for classic wheelchair ball
+3. Add more idle animations
+4. Normalize LiftCard to match edits to SocializeCard
+5. Make heads bigger
+
+Wish:
+Fix sizing now that idle-screen is fixed statically:
+    Works on all games except socialize and lift... possible solutions is to resize with JS or to just fix the game to stay in portrait mode.
+
+
+
+
+
+
+Egg hatches 
+If xyz then he dies (grave and RIP)
+Transition to game is close up of card in the middle
+The Classic Wheelchair Ball.txt is given piece by piece as a reward for keeping him alive.
+
+Games to add:
+Eat (remix of dribble game)
+Stretch (remix of hifive game)
+Shoot (bar fills then release)
+Stats
+
+
+Stamina rules how many total actions you can take in a day
+Refuel points are converted by power or stamina (if not enough refuel gets no gains, if not enough fuel gets dizzy)
+Fuel points let them unlock options
+Power, brain, touch, and will - if you get 10 points in each category each day you earn a star, 20 stars levels up your Prepperoni.
+Can feed protein (+1 refuel)
+Can feed carb (+1 fuel)
+Can feed veggie (+1 fuel)
+
+Can lift weights (+1 power)
+Can watch game film (+1 brain)
+Can study (+5 brain)
+Can socialize (+1 brain)
+Can push (+1 stamina)
+Can manifest (+1 will)- positive self-talk
+Can meditate (+1 will)
+Can lead (+1 will, +1 brain, +1 power)
+
+Can do power start and stop (+1 stamina)- mini game push, push, stop 30s
+Can shoot hoops (+1 touch)- mini game- select proper cues to get best score, or answer multiple choice question
+Practice dribbling (+1 touch) - mini game touch the basketballs when they appear 30s
+
+Play game (+10 all stats) - unlock Sat & Sun
+
+Games so far:
+
+socialize: two hands high fiving
+power start and stop: hand on wheel
+dribbling: ball pushing down
+lead: "Let's go!"

@@ -1,0 +1,81 @@
+export const tamaInitialStore = {
+    currentCardInstance: 'card-instance-0',
+    currentGameScreen: 'StartScreen',
+    prepperoniDevelopmentStatus: 'egg',
+    leftButton: 0,
+    centerButton: 0,
+    rightButton: 0,
+    game: 'prepperoni',
+    useLocalStorage: true,
+    transitioningToGame: false,
+    isIdleAnimationRunning: false,
+    hasAnimatedHatch: false,
+    belly: 3,
+    brain: 3,
+    muscle: 3,
+    reflex: 3,
+    stamina: 3,
+    touch: 3,
+    will: 3,
+    netbelly: 3,
+    netbrain: 3,
+    netmuscle: 3,
+    netreflex: 3,
+    netstamina: 3,
+    nettouch: 3,
+    netwill: 3,
+    prevGameData: {
+        text: [''],
+        icon: '',
+        mod: ''
+    },
+    insetHeight: '',
+    hatchTimer: '',
+    classicBallIndex: 0,
+    classicBallUnlockedPages: [false, false, false, false, false, false, false, false, false, false, false, false],
+    classicBallInitialShows: [false, false, false, false, false, false, false, false, false, false, false, false],
+    classicBallQueue: [],
+    insetMirrorCss: {},
+    bgX: 0,
+    bgY: 0,
+    mfaDimensions: {
+        left: 0,
+        top: 0,
+        width: 0,
+        height: 0
+    },
+    insetScreenDimensions: {
+        left: 0,
+        top: 0,
+        width: 0,
+        height: 0,
+        innerWidth: 0,
+        innerHeight:0
+    },
+    borderPointVariances: [],
+    resetting: false,
+    borderFrameBaselineDimensions: {
+        left: 0,
+        top: 0,
+        width: 0,
+        height: 0
+    },
+    clickableGameImgSize: 0,
+    leftLabelText: '',
+    centerLabelText: '',
+    rightLabelText: ''
+}
+
+export const persistingStateKeys = [
+    'reflex',
+    'will',
+    'stamina',
+    'brain',
+    'belly',
+    'touch',
+    'muscle',
+    'prepperoniDevelopmentStatus',
+    'hatchTimer',
+    'hasAnimatedHatch',
+    'classicBallInitialShows'
+]

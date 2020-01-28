@@ -1,0 +1,184 @@
+{
+    "_id": {
+        "$oid": "prepperoni-trainer"
+    },
+    "cardInstances": [
+        {
+            "id": "card-instance-0",
+            "cardElements": [
+                {
+                    "type": "TamaLogic",
+                    "children": [
+                        {
+                            "type": "TamaNexus",
+                            "children": [
+                                {
+                                    "type": "p",
+                                    "text": "Reset Dragoni",
+                                    "clickFunction": {"name":"resetGlobal", "params": ["emptyObject", "dragoni"]}
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "backgroundElements": [
+            ]
+        },
+        {
+            "id": "card-instance-old-zero",
+            "cardElements": [
+                {
+                    "type": "TamaLogic",
+                    "children": [
+                        {
+                            "type": "p",
+                            "text": "I am a prepperoni."
+                        },
+                        {
+                            "type": "TamaProteinOption",
+                            "text": "Eat protein",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["eat protein", "refuel", "add", 1, "dragoni"]}
+                        },
+                        {
+                            "type": "TamaCarbsOption",
+                            "text": "Eat carbs",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["eat carbs", "fuel", "add", 1, "dragoni"]}
+                        },
+                        {
+                            "type": "TamaVeggiesOption",
+                            "text": "Eat veggies",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["eat veggies", "fuel", "add", 1, "dragoni"]}
+                        },
+                        {
+                            "type": "TamaWeightsOption",
+                            "text": "Lift weights",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["lift weights", "power", "add", 1, "dragoni"]}
+                        },
+                        {
+                            "type": "TamaGameFilmOption",
+                            "text": "Watch game film",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["watch game film", "brain", "add", 1, "dragoni"]}
+                        },
+                        {
+                            "type": "TamaStudyOption",
+                            "text": "Study",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["study", "brain", "add", 1, "dragoni"]}
+                        },
+                        {
+                            "type": "TamaSocializeOption",
+                            "text": "Socialize",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["socialize", "brain", "add", 1, "dragoni"]},
+                            "goToCard": "card-instance-4"
+                        },
+                        {
+                            "type": "TamaManifestOption",
+                            "text": "Manifest",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["manifest", "will", "add", 1, "dragoni"]}
+                        },
+                        {
+                            "type": "TamaMeditateOption",
+                            "text": "Meditate",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["meditate", "will", "add", 1, "dragoni"]}
+                        },
+                        {
+                            "type": "TamaLeadOption",
+                            "text": "Lead",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["lead", "will", "add", 1, "dragoni"]},
+                            "goToCard": "card-instance-3"
+                        },
+                        {
+                            "type": "TamaPowerStartStopOption",
+                            "text": "Power start & stop",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["power start and stop", "stamina", "add", 1, "dragoni"]},
+                            "goToCard": "card-instance-1"
+                        },
+                        {
+                            "type": "TamaShootHoopsOption",
+                            "text": "Shoot hoops",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["shoot hoops", "power", "add", 1, "dragoni"]}
+                        },
+                        {
+                            "type": "TamaDribblingOption",
+                            "text": "Practice dribbling",
+                            "clickFunction": {"name":"emitUpdateGlobal", "params": ["practice dribbling", "stamina", "add", 1, "dragoni"]},
+                            "goToCard": "card-instance-2"
+                        },
+                        {
+                            "type": "p",
+                            "text": "Reset Dragoni",
+                            "clickFunction": {"name":"resetGlobal", "params": ["emptyObject", "dragoni"]}
+                        }
+                    ]
+                }
+            ],
+            "backgroundElements": [
+            ]
+        },
+        {
+            "id": "card-instance-1",
+            "cardElements": [
+                {
+                    "type": "TamaLogic",
+                    "children": [
+                        {
+                            "type": "PowerStartAndStopCard"
+                        }
+                    ]
+                }
+            ],
+            "backgroundElements": [
+            ]
+        },
+        {
+            "id": "card-instance-2",
+            "cardElements": [
+                {
+                    "type": "TamaLogic",
+                    "children": [
+                        {
+                            "type": "DribbleCard"
+                        }
+                    ]
+                }
+            ],
+            "backgroundElements": [
+                {
+                    "type": "BgGif",
+                    "src": "./assets/pngs/basketball-hoop2.png"
+                }
+            ]
+        },
+        {
+            "id": "card-instance-3",
+            "cardElements": [
+                {
+                    "type": "TamaLogic",
+                    "children": [
+                        {
+                            "type": "LeadCard"
+                        }
+                    ]
+                }
+            ],
+            "backgroundElements": [
+            ]
+        },
+        {
+            "id": "card-instance-4",
+            "cardElements": [
+                {
+                    "type": "TamaLogic",
+                    "children": [
+                        {
+                            "type": "SocializeCard"
+                        }
+                    ]
+                }
+            ],
+            "backgroundElements": [
+            ]
+        }
+    ],
+    "title": "Prepperoni Trainer"
+}
