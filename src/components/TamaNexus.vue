@@ -48,20 +48,20 @@
                                 text="clear LS"
                             ></MushyText>
                         </button>
-                        <button class="nexus-temp-button" @click="koPos()">
+                        <button class="nexus-temp-button" @click="loadAmore()">
                             <MushyText
                                 class="margin-centered"
                                 :heightPercent="5"
                                 :widthPercent="50"
-                                text="KO Pos"
+                                text="load amore"
                             ></MushyText>
                         </button>
-                        <button class="nexus-temp-button" @click="koNeg()">
+                        <button class="nexus-temp-button" @click="playAmore()">
                             <MushyText
                                 class="margin-centered"
                                 :heightPercent="5"
                                 :widthPercent="50"
-                                text="KO Neg"
+                                text="play amore"
                             ></MushyText>
                         </button>
                         <div class="prepperoni-box">
@@ -111,33 +111,34 @@
 <script>
 import { store } from '../data/store.js'
 import { tama } from '../mixins/tama.js'
-const dribblingIcon = '../assets/pngs/dribbling-icon.png'
-const leadIcon = '../assets/pngs/lead-icon.png'
-const psnsIcon = '../assets/pngs/powersns-icon.png'
-const socializeIcon = '../assets/pngs/socialize-icon.png'
-const eatIcon = '../assets/pngs/steak-icon.png'
-const shootIcon = '../assets/pngs/hoop-icon.png'
-const liftIcon = '../assets/pngs/lift-icon.png'
-const statsIcon = '../assets/pngs/stats-icon.png'
-const empty32 = '../assets/pngs/empty32.png'
-const cloud0 = '../assets/pngs/cloud-0.png'
-const cloud1 = '../assets/pngs/cloud-1.png'
-const cloud2 = '../assets/pngs/cloud-2.png'
-const checkStart = '../assets/pngs/check-start.png'
-const checkMid = '../assets/pngs/check-mid.png'
-const checkFinish = '../assets/pngs/check-finish.png'
-const xStart = '../assets/pngs/x-start.png'
-const xMid = '../assets/pngs/x-mid.png'
-const xFinish = '../assets/pngs/x-finish.png'
-const highHand = '../assets/pngs/socialize-two-hands-up.png'
-const leftHand = '../assets/pngs/socialize-left-hand.png'
-const rightHand = '../assets/pngs/socialize-right-hand.png'
-const lowHand = '../assets/pngs/socialize-two-hands-down.png'
-const psns0 = '../assets/pngs/psns-0.png'
-const highFiveHigh = '../assets/pngs/high-five-high.png'
-const highFiveRight = '../assets/pngs/high-five-right.png'
-const highFiveLow = '../assets/pngs/high-five-low.png'
-const highFiveLeft = '../assets/pngs/high-five-left.png'
+import { audio } from '../mixins/audio.js'
+const dribblingIcon = require('../assets/pngs/dribbling-icon.png')
+const leadIcon = require('../assets/pngs/lead-icon.png')
+const psnsIcon = require('../assets/pngs/powersns-icon.png')
+const socializeIcon = require('../assets/pngs/socialize-icon.png')
+const eatIcon = require('../assets/pngs/steak-icon.png')
+const shootIcon = require('../assets/pngs/hoop-icon.png')
+const liftIcon = require('../assets/pngs/lift-icon.png')
+const statsIcon = require('../assets/pngs/stats-icon.png')
+const empty32 = require('../assets/pngs/empty32.png')
+const cloud0 = require('../assets/pngs/cloud-0.png')
+const cloud1 = require('../assets/pngs/cloud-1.png')
+const cloud2 = require('../assets/pngs/cloud-2.png')
+const checkStart = require('../assets/pngs/check-start.png')
+const checkMid = require('../assets/pngs/check-mid.png')
+const checkFinish = require('../assets/pngs/check-finish.png')
+const xStart = require('../assets/pngs/x-start.png')
+const xMid = require('../assets/pngs/x-mid.png')
+const xFinish = require('../assets/pngs/x-finish.png')
+const highHand = require('../assets/pngs/socialize-two-hands-up.png')
+const leftHand = require('../assets/pngs/socialize-left-hand.png')
+const rightHand = require('../assets/pngs/socialize-right-hand.png')
+const lowHand = require('../assets/pngs/socialize-two-hands-down.png')
+const psns0 = require('../assets/pngs/psns-0.png')
+const highFiveHigh = require('../assets/pngs/high-five-high.png')
+const highFiveRight = require('../assets/pngs/high-five-right.png')
+const highFiveLow = require('../assets/pngs/high-five-low.png')
+const highFiveLeft = require('../assets/pngs/high-five-left.png')
 const actionsArray = [
     'dribbling',
     'lead',
@@ -151,7 +152,7 @@ const actionsArray = [
 
 export default {
     name: 'TamaNexus',
-    mixins: [tama],
+    mixins: [tama, audio],
     components: {},
     data() {
         return {
@@ -450,6 +451,13 @@ export default {
         },
         onResize() {
             this.setImageRendering()
+        },
+        loadAmore() {
+            this.loadSong('amore','audio/Prep AMORE2.mp3', 1, 1, 0)
+
+        },
+        playAmore() {
+            this.play('amore')
         }
     },
     watch: {

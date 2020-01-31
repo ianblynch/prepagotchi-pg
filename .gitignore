@@ -1,7 +1,8 @@
 node_modules
 dist
-phonegap-build
+/phonegap-build/www
 # Cordova
 /src-cordova/platforms
 /src-cordova/plugins
 /public/cordova.js
+uploadToPhoneGapBuild.zip

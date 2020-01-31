@@ -1,0 +1,12 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Prepagotchi",
+  "short_name": "Prepagotchi",
+  "version": "com.phonegap.prepagotchi",
+  "description": "Prepagotchi",
+  "author": "BRAKLI",
+  "icons": [],
+  "orientation": "portrait",
+  "start_url": "index.html"
+}

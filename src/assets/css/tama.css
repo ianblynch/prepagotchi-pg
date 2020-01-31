@@ -435,7 +435,7 @@ div.card-element--container {
 }
 #outer-frame {
     image-rendering: smooth;
-    background-color: gray;
+    background-color: white;
 }
 #bg-canvas {
     background-color: white;

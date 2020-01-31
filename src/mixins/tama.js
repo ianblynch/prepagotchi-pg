@@ -386,6 +386,10 @@ export const tama = {
             var images = require(img)
             console.log(images)
             return images
+        },
+        setDeviceReady() {
+            store.setValue('deviceready', true)
+            console.log('deviceready')
         }
     },
 }

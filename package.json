@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:assets": "robocopy .\\src\\assets\\pngs\\ .\\phonegap-build\\www\\img\\ /e /z",
-    "build": "vue-cli-service build&&npm run build:assets&&webpack",
+    "build:assets": "ROBOCOPY .\\src\\assets\\pngs\\ .\\phonegap-build\\www\\img\\ /E /Z",
+    "build:audio": "ROBOCOPY .\\src\\assets\\audio\\ .\\phonegap-build\\www\\audio\\ /E /Z",
+    "build": "vue-cli-service build && npm run build:audio && npm run build:assets",
+    "build-all": "vue-cli-service build && ROBOCOPY .\\src\\assets\\audio\\ .\\phonegap-build\\www\\audio\\ /E /Z && ROBOCOPY .\\src\\assets\\pngs\\ .\\phonegap-build\\www\\img\\ /E /Z",
     "lint": "vue-cli-service lint",
     "build:svgstore": "npx svgstore-cli -o ./src/assets/svg-definition.svg --inline ./src/assets/svg/*.svg",
-    "artifact": "set NODE_ENV=production&&npm run build:webpack&&npm run zip",
+    "artifact": "set NODE_ENV=production && npm run build && npm run zip",
     "test": "echo \"Error: no test specified\" && exit 1",
     "zip": "build\\7za.exe a -tzip uploadToPhoneGapBuild.zip phonegap-build\\*"
   },

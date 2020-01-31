@@ -63,7 +63,8 @@ export const tamaInitialStore = {
     clickableGameImgSize: 0,
     leftLabelText: '',
     centerLabelText: '',
-    rightLabelText: ''
+    rightLabelText: '',
+    deviceready: false
 }
 
 export const persistingStateKeys = [

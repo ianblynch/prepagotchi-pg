@@ -1,3 +1,5 @@
+Eliminate yellow border on statements in LeadCard
+
 Then I will make editor for radiation
 
 

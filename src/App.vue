@@ -1,5 +1,6 @@
 <template>
     <div
+        id="app"
         class="app-container full-card flex flex-col justify-start text-center w-full break-words h-full fixed items-center background-color-rad-0"
     >
         <!-- background elements -->
@@ -41,6 +42,8 @@
 <script>
 import CardElement from './components/CardElement.vue'
 import { store } from './data/store.js'
+import { tama } from './mixins/tama.js'
+import { audio } from './mixins/audio.js'
 import story, { cards } from './data/tamaStory.js'
 var lastTouchEnd = 0
 const aspects = [
@@ -54,6 +57,7 @@ const aspects = [
 ]
 export default {
     name: 'app',
+    mixins: [tama, audio],
     components: {
         CardElement,
     },
@@ -102,6 +106,9 @@ export default {
             let diffMS = now - hatchTime
             days = Math.floor(diffMS / oneDayMS)           
             store.setValue('daysAlive', days, true)
+        },
+        startMusic() {            
+            this.loop('amore')
         }
     },
     mounted() {
@@ -125,6 +132,8 @@ export default {
             )
             .then(() => {
                 this.checkIfDead()
+                this.loadSong('amore','audio/Prep AMORE2.mp3', 1, 1, 0)
+            }).then(() => {
             })
     },
 
@@ -212,7 +221,7 @@ export default {
                 this.checkIfDead()
             }
         }
-    },
+    }
 }
 </script>
 

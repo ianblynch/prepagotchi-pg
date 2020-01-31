@@ -299,18 +299,9 @@ export default {
         },
     },
     mounted() {
-        this.makeBgTesselation()
-        // this.setBorderPointVariances(28)
-        // this.draw()
-        // window.addEventListener('resize', () => {
-        //     this.onResize()
-        // })
+        // this.makeBgTesselation()
     },
-    // beforeDestroy() {
-    //     window.removeEventListener('resize', () => {
-    //         this.onResize()
-    //     })
-    // },
+
     watch: {
         'storeState.insetScreenDimensions': {
             deep: true,
