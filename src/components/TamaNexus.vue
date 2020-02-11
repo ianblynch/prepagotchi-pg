@@ -51,7 +51,7 @@
                         <button class="nexus-temp-button" @click="loadAmore()">
                             <MushyText
                                 class="margin-centered"
-                                :heightPercent="5"
+                                :heightPercent="10"
                                 :widthPercent="50"
                                 text="load amore"
                             ></MushyText>
@@ -59,9 +59,25 @@
                         <button class="nexus-temp-button" @click="playAmore()">
                             <MushyText
                                 class="margin-centered"
-                                :heightPercent="5"
+                                :heightPercent="10"
                                 :widthPercent="50"
                                 text="play amore"
+                            ></MushyText>
+                        </button>
+                        <button class="nexus-temp-button" @click="stopAmore()">
+                            <MushyText
+                                class="margin-centered"
+                                :heightPercent="10"
+                                :widthPercent="50"
+                                text="stop amore"
+                            ></MushyText>
+                        </button>
+                        <button class="nexus-temp-button" @click="unloadAmore()">
+                            <MushyText
+                                class="margin-centered"
+                                :heightPercent="5"
+                                :widthPercent="50"
+                                text="unload amore"
                             ></MushyText>
                         </button>
                         <div class="prepperoni-box">
@@ -453,11 +469,37 @@ export default {
             this.setImageRendering()
         },
         loadAmore() {
-            this.loadSong('amore','audio/Prep AMORE2.mp3', 1, 1, 0)
+            this.loadSong('amore','audio/Prep AMORE2.mp3', .03, 1, 0)
+
 
         },
         playAmore() {
-            this.play('amore')
+            this.play('amore',
+                () => {
+                    console.log('song played successfully')
+                },
+                err => {
+                    console.log(err)
+                })
+            // this.storeState.amore.play()
+        },
+        stopAmore() {
+            this.stop('amore',
+                            () => {
+                                console.log('song stopped successfully')
+                            },
+                            err => {
+                                console.log(err)
+                            })
+        },
+        unloadAmore() {
+            this.unload('amore',
+                            () => {
+                                console.log('song unloaded successfully')
+                            },
+                            err => {
+                                console.log(err)
+                            })
         }
     },
     watch: {
@@ -512,6 +554,8 @@ export default {
         this.setImageRendering()
         this.listen('resize', this.onResize)
         this.setLabelText('left', 'select', 'right')
+        // store.setValue('amore', new Media('/android_asset/www/audio/Prep AMORE2.mp3',() => {console.log('media played successfully')}, (err, msg) => {console.log(err, msg)}))
+        // this.loadAmore()
     },
     beforeDestroy() {
         clearInterval(this.classicBallInterval)

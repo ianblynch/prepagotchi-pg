@@ -64,7 +64,8 @@ export const tamaInitialStore = {
     leftLabelText: '',
     centerLabelText: '',
     rightLabelText: '',
-    deviceready: false
+    deviceready: false,
+    amore: ''
 }
 
 export const persistingStateKeys = [

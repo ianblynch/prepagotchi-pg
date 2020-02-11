@@ -210,45 +210,12 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-        "id": "cordova-plugin-inappbrowser.inappbrowser",
-        "pluginId": "cordova-plugin-inappbrowser",
-        "clobbers": [
-            "cordova.InAppBrowser.open",
-            "window.open"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-inappbrowser/src/browser/InAppBrowserProxy.js",
-        "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
-        "pluginId": "cordova-plugin-inappbrowser",
-        "runs": true
-    },
-    {
         "file": "plugins/cordova-plugin-nativeaudio/www/nativeaudio-browser.js",
         "id": "cordova-plugin-nativeaudio.NativeAudioBrowser",
         "pluginId": "cordova-plugin-nativeaudio",
         "clobbers": [
             "cordova.plugins.NativeAudio",
             "plugins.NativeAudio"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-vibration/www/vibration.js",
-        "id": "cordova-plugin-vibration.notification",
-        "pluginId": "cordova-plugin-vibration",
-        "merges": [
-            "navigator.notification",
-            "navigator"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-vibration/src/browser/Vibration.js",
-        "id": "cordova-plugin-vibration.Vibration",
-        "pluginId": "cordova-plugin-vibration",
-        "merges": [
-            "navigator.notification",
-            "navigator"
         ]
     }
 ];
@@ -259,9 +226,7 @@ module.exports.metadata =
     "cordova-plugin-device": "1.1.7",
     "cordova-plugin-dialogs": "1.3.4",
     "cordova-plugin-file": "4.3.3",
-    "cordova-plugin-inappbrowser": "1.7.2",
-    "cordova-plugin-nativeaudio": "3.0.9",
-    "cordova-plugin-vibration": "2.1.6"
+    "cordova-plugin-nativeaudio": "3.0.9"
 }
 // BOTTOM OF METADATA
 });

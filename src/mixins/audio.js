@@ -17,12 +17,8 @@ export const audio = {
                 volume,
                 voices,
                 delay,
-                () => {
-                    console.log('song loaded successfully')
-                },
-                err => {
-                    console.log(err)
-                }
+                successCallback,
+                errorCallback
             )
         },
         loadSound(id, assetPath, successCallback, errorCallback) {
@@ -32,13 +28,7 @@ export const audio = {
         play(id, successCallback, errorCallback, completeCallback) {
             let wna = window.plugins.NativeAudio
             wna.play(
-                id,
-                () => {
-                    console.log('song played successfully')
-                },
-                err => {
-                    console.log(err)
-                }, completeCallback
+                id, successCallback, errorCallback, completeCallback
             )
         },
         loop(id, successCallback, errorCallback) {

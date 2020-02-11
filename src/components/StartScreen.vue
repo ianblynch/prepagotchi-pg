@@ -7,6 +7,9 @@
                 :widthPercent="100"
                 text="prepagotchi"
             ></MushyText>
+            <div id="start-icon">
+                <img id="start-icon-img" :src="startIconFrame" />
+            </div>
         </div>
     </div>
 </template>
@@ -14,17 +17,30 @@
 <script>
 import { store } from '../data/store.js'
 import { tama } from '../mixins/tama.js'
+import { audio } from '../mixins/audio.js'
 
+const broccoliIcon = require('../assets/pngs/broccoli.png')
 export default {
     name: 'StartScreen',
-    mixins: [tama],
+    mixins: [tama, audio],
     data() {
         return {
             storeState: store.state,
+            startIconFrame: broccoliIcon
         }
     },
     methods: {
         moveOn() {
+            // this.play('amore')
+                this.stop(
+                    'amore',
+                    () => {
+                        console.log('song stopped successfully')
+                    },
+                    err => {
+                        console.log(err)
+                    }
+                )
             let theStatus = this.storeState.prepperoniDevelopmentStatus
             if (theStatus === 'egg') {
                 store.setValue('currentGameScreen', 'EggCard', true)

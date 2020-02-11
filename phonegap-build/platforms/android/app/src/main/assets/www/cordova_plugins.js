@@ -198,29 +198,11 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "runs": true
     },
     {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open",
-        "window.open"
-      ]
-    },
-    {
       "id": "cordova-plugin-nativeaudio.nativeaudio",
       "file": "plugins/cordova-plugin-nativeaudio/www/nativeaudio.js",
       "pluginId": "cordova-plugin-nativeaudio",
       "clobbers": [
         "window.plugins.NativeAudio"
-      ]
-    },
-    {
-      "id": "cordova-plugin-vibration.notification",
-      "file": "plugins/cordova-plugin-vibration/www/vibration.js",
-      "pluginId": "cordova-plugin-vibration",
-      "merges": [
-        "navigator.notification",
-        "navigator"
       ]
     }
   ];
@@ -228,8 +210,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-device": "1.1.7",
     "cordova-plugin-dialogs": "1.3.4",
     "cordova-plugin-file": "4.3.3",
-    "cordova-plugin-inappbrowser": "1.7.2",
-    "cordova-plugin-nativeaudio": "3.0.9",
-    "cordova-plugin-vibration": "2.1.6"
+    "cordova-plugin-nativeaudio": "3.0.9"
   };
 });

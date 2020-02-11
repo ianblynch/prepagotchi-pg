@@ -4,15 +4,21 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:assets": "ROBOCOPY .\\src\\assets\\pngs\\ .\\phonegap-build\\www\\img\\ /E /Z",
-    "build:audio": "ROBOCOPY .\\src\\assets\\audio\\ .\\phonegap-build\\www\\audio\\ /E /Z",
-    "build": "vue-cli-service build && npm run build:audio && npm run build:assets",
+    "vcsb": "vue-cli-service build",
+    "d3": "timeout 2 /NOBREAK",
+    "build:assets": "ROBOCOPY .\\src\\assets\\pngs\\ .\\phonegap-build\\www\\img\\ /nfl /ndl /njh /njs /ns /nc /np",
+    "build:audio": "ROBOCOPY .\\src\\assets\\audio\\ .\\phonegap-build\\www\\audio\\ /nfl /ndl /njh /njs /ns /nc /np",
+    "build": "vue-cli-service build && npm run build:audio || npm run build:assets",
     "build-all": "vue-cli-service build && ROBOCOPY .\\src\\assets\\audio\\ .\\phonegap-build\\www\\audio\\ /E /Z && ROBOCOPY .\\src\\assets\\pngs\\ .\\phonegap-build\\www\\img\\ /E /Z",
     "lint": "vue-cli-service lint",
     "build:svgstore": "npx svgstore-cli -o ./src/assets/svg-definition.svg --inline ./src/assets/svg/*.svg",
     "artifact": "set NODE_ENV=production && npm run build && npm run zip",
+    "sartifact": "set NODE_ENV=production && npm run build || npm run myzip",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "zip": "build\\7za.exe a -tzip uploadToPhoneGapBuild.zip phonegap-build\\*"
+    "zip": "build\\7za.exe a -tzip uploadToPhoneGapBuild.zip phonegap-build\\*",
+    "myzip": "powershell Compress-Archive -Path phonegap-build\\*  -DestinationPath .\\myzip.zip -Force",
+    "aa": "npm run build:audio && npm run build:assets",    
+    "myassets": "ROBOCOPY .\\src\\assets\\pngs\\ .\\phonegap-build\\www\\img\\ /E /Z /XX /V"
   },
   "dependencies": {
     "core-js": "^2.6.5",
@@ -31,6 +37,7 @@
     "@vue/cli-plugin-babel": "^3.10.0",
     "@vue/cli-plugin-eslint": "^3.10.0",
     "@vue/cli-service": "^3.10.0",
+    "@vue/devtools": "^5.3.3",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",

@@ -1,3 +1,10 @@
+Prepagotchi Hi-res logo
+Hi-res graphics
+Brakli logo -> Dragons Logo -> click starts music
+Each game has different music
+
+
+
 Eliminate yellow border on statements in LeadCard
 
 Then I will make editor for radiation

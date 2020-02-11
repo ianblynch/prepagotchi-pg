@@ -44,6 +44,7 @@ import CardElement from './components/CardElement.vue'
 import { store } from './data/store.js'
 import { tama } from './mixins/tama.js'
 import { audio } from './mixins/audio.js'
+import { media } from './mixins/media.js'
 import story, { cards } from './data/tamaStory.js'
 var lastTouchEnd = 0
 const aspects = [
@@ -57,7 +58,7 @@ const aspects = [
 ]
 export default {
     name: 'app',
-    mixins: [tama, audio],
+    mixins: [tama, audio, media],
     components: {
         CardElement,
     },
@@ -72,7 +73,11 @@ export default {
         subtractDaysSinceHatch() {
             aspects.forEach(asp => {
                 const theAspect = this.storeState[asp]
-                store.setValue(`net${asp}`, theAspect - this.daysSinceHatch, true)
+                store.setValue(
+                    `net${asp}`,
+                    theAspect - this.daysSinceHatch,
+                    true
+                )
             })
         },
         checkIfDead() {
@@ -91,7 +96,7 @@ export default {
             })
             if (neg1Counter > 4 || pos1Counter > 6) {
                 //kill
-                isDead= true
+                isDead = true
                 store.setValue('currentGameScreen', 'GraveScreen', true)
             }
             return isDead
@@ -99,17 +104,17 @@ export default {
         setDaysAlive() {
             let days
             const oneDayMS = 86400000
-            const threeDays = oneDayMS *3
-            //get time now 
+            const threeDays = oneDayMS * 3
+            //get time now
             let now = new Date().getTime()
             let hatchTime = this.storeState.hatchTimer - threeDays
             let diffMS = now - hatchTime
-            days = Math.floor(diffMS / oneDayMS)           
+            days = Math.floor(diffMS / oneDayMS)
             store.setValue('daysAlive', days, true)
         },
-        startMusic() {            
-            this.loop('amore')
-        }
+        // startMusic() {
+        //     this.loop('amore')
+        // }
     },
     mounted() {
         let asyncLoad = new Promise((resolve, reject) => {
@@ -132,9 +137,34 @@ export default {
             )
             .then(() => {
                 this.checkIfDead()
-                this.loadSong('amore','audio/Prep AMORE2.mp3', 1, 1, 0)
-            }).then(() => {
+                this.loadSong(
+                    'amore',
+                    'audio/Prep AMORE2.mp3',
+                    .03,
+                    1,
+                    0,
+                    () => {
+                        console.log('song loaded successfully')
+                    },
+                    err => {
+                        console.log(err)
+                    }
+                )
+                this.loadSong(
+                    'nose',
+                    'audio/Prep THE NOSE.mp3',
+                    1,
+                    1,
+                    0,
+                    () => {
+                        console.log('song loaded successfully')
+                    },
+                    err => {
+                        console.log(err)
+                    }
+                )
             })
+            .then(() => {})
     },
 
     computed: {
@@ -156,7 +186,7 @@ export default {
                 num = Math.floor((now - hatch) / 86400000)
             }
             return num
-        }
+        },
     },
     watch: {
         storeState: {
@@ -185,43 +215,43 @@ export default {
         },
         'storeState.will'() {
             this.subtractDaysSinceHatch()
-        },        
+        },
         'storeState.netbelly'() {
             if (!this.storeState.resetting) {
                 this.checkIfDead()
             }
-        },        
+        },
         'storeState.netbrain'() {
             if (!this.storeState.resetting) {
                 this.checkIfDead()
             }
-        },        
+        },
         'storeState.netmuscle'() {
             if (!this.storeState.resetting) {
                 this.checkIfDead()
             }
-        },        
+        },
         'storeState.netreflex'() {
             if (!this.storeState.resetting) {
                 this.checkIfDead()
             }
-        },        
+        },
         'storeState.netstamina'() {
             if (!this.storeState.resetting) {
                 this.checkIfDead()
             }
-        },        
+        },
         'storeState.nettouch'() {
             if (!this.storeState.resetting) {
                 this.checkIfDead()
             }
-        },        
+        },
         'storeState.netwill'() {
             if (!this.storeState.resetting) {
                 this.checkIfDead()
             }
-        }
-    }
+        },
+    },
 }
 </script>
 
