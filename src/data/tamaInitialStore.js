@@ -65,7 +65,8 @@ export const tamaInitialStore = {
     centerLabelText: '',
     rightLabelText: '',
     deviceready: false,
-    amore: ''
+    loopingSong: '',
+    newLoopingSong: ''
 }
 
 export const persistingStateKeys = [

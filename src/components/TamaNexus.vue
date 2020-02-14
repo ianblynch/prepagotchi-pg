@@ -40,7 +40,7 @@
                         <img id="big-icon-img" :src="bigIconFrame" />
                     </div>
                     <template v-else>
-                        <button class="nexus-temp-button" @click="wipeLS()">
+                        <!-- <button class="nexus-temp-button" @click="wipeLS()">
                             <MushyText
                                 class="margin-centered"
                                 :heightPercent="5"
@@ -48,15 +48,7 @@
                                 text="clear LS"
                             ></MushyText>
                         </button>
-                        <button class="nexus-temp-button" @click="loadAmore()">
-                            <MushyText
-                                class="margin-centered"
-                                :heightPercent="10"
-                                :widthPercent="50"
-                                text="load amore"
-                            ></MushyText>
-                        </button>
-                        <button class="nexus-temp-button" @click="playAmore()">
+                        <button class="nexus-temp-button" @click="playAmore2()">
                             <MushyText
                                 class="margin-centered"
                                 :heightPercent="10"
@@ -72,14 +64,14 @@
                                 text="stop amore"
                             ></MushyText>
                         </button>
-                        <button class="nexus-temp-button" @click="unloadAmore()">
+                        <button class="nexus-temp-button" @click="switchToMindshaft()">
                             <MushyText
                                 class="margin-centered"
-                                :heightPercent="5"
+                                :heightPercent="10"
                                 :widthPercent="50"
-                                text="unload amore"
+                                text="switch to mindshaft"
                             ></MushyText>
-                        </button>
+                        </button> -->
                         <div class="prepperoni-box">
                             <img
                                 id="prepperoni-img"
@@ -469,19 +461,12 @@ export default {
             this.setImageRendering()
         },
         loadAmore() {
-            this.loadSong('amore','audio/Prep AMORE2.mp3', .03, 1, 0)
+            this.loadSong('amore','audio/amore2.mp3', .03, 1, 0)
 
 
         },
-        playAmore() {
-            this.play('amore',
-                () => {
-                    console.log('song played successfully')
-                },
-                err => {
-                    console.log(err)
-                })
-            // this.storeState.amore.play()
+        playAmore2() {
+            store.setValue('newLoopingSong', 'amore2')
         },
         stopAmore() {
             this.stop('amore',
@@ -500,6 +485,9 @@ export default {
                             err => {
                                 console.log(err)
                             })
+        },
+        switchToMindshaft() {
+            store.setValue('newLoopingSong', 'mindshaft')
         }
     },
     watch: {

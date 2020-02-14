@@ -33,12 +33,13 @@
 <script>
 import { store } from '../data/store.js'
 import { tama } from '../mixins/tama.js'
+import { audio } from '../mixins/audio.js'
 const leftNode = document.getElementById('left-button')
 const centerNode = document.getElementById('center-button')
 const rightNode = document.getElementById('right-button')
 export default {
     name: 'TamaButtons',
-    mixins: [tama],
+    mixins: [tama, audio],
     data() {
         return {
             storeState: store.state,
@@ -56,14 +57,17 @@ export default {
         clickedLeft() {
             store.setValue('leftButton', this.storeState.leftButton + 1)
             this.runAnimation('left-button')
+            this.playSfx('sfx0')
         },
         clickedCenter() {
             store.setValue('centerButton', this.storeState.centerButton + 1)
             this.runAnimation('center-button')
+            this.playSfx('sfx1')
         },
         clickedRight() {
             store.setValue('rightButton', this.storeState.rightButton + 1)
             this.runAnimation('right-button')
+            this.playSfx('sfx2')
         },
         setDiameter() {
             let insetHeight = this.getInsetScreenDimensions().innerHeight

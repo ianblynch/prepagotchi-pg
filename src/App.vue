@@ -44,7 +44,6 @@ import CardElement from './components/CardElement.vue'
 import { store } from './data/store.js'
 import { tama } from './mixins/tama.js'
 import { audio } from './mixins/audio.js'
-import { media } from './mixins/media.js'
 import story, { cards } from './data/tamaStory.js'
 var lastTouchEnd = 0
 const aspects = [
@@ -58,7 +57,7 @@ const aspects = [
 ]
 export default {
     name: 'app',
-    mixins: [tama, audio, media],
+    mixins: [tama, audio],
     components: {
         CardElement,
     },
@@ -137,32 +136,34 @@ export default {
             )
             .then(() => {
                 this.checkIfDead()
-                this.loadSong(
-                    'amore',
-                    'audio/Prep AMORE2.mp3',
-                    .03,
-                    1,
-                    0,
-                    () => {
-                        console.log('song loaded successfully')
-                    },
-                    err => {
-                        console.log(err)
-                    }
-                )
-                this.loadSong(
-                    'nose',
-                    'audio/Prep THE NOSE.mp3',
-                    1,
-                    1,
-                    0,
-                    () => {
-                        console.log('song loaded successfully')
-                    },
-                    err => {
-                        console.log(err)
-                    }
-                )
+                // this.loadSong(
+                //     'amore',
+                //     'audio/amore2.mp3',
+                //     .03,
+                //     1,
+                //     0,
+                //     () => {
+                //         console.log('song loaded successfully')
+                //     },
+                //     err => {
+                //         console.log(err)
+                //     }
+                // )
+                // this.loadSong(
+                //     'nose',
+                //     'audio/theNose.mp3',
+                //     1,
+                //     1,
+                //     0,
+                //     () => {
+                //         console.log('song loaded successfully')
+                //     },
+                //     err => {
+                //         console.log(err)
+                //     }
+                // )
+                this.loadAllSongs()
+                this.loadAllSfx()
             })
             .then(() => {})
     },
@@ -251,6 +252,12 @@ export default {
                 this.checkIfDead()
             }
         },
+        'storeState.newLoopingSong'() {
+            this.handleSongChange()
+        },
+        'storeState.currentGameScreen'() {
+            this.checkIfShouldChangeSong()
+        }
     },
 }
 </script>
