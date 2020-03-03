@@ -162,8 +162,8 @@ export default {
                 //         console.log(err)
                 //     }
                 // )
-                this.loadAllSongs()
-                this.loadAllSfx()
+                this.loadAllAudio()
+                // this.loadAllSfx()
             })
             .then(() => {})
     },

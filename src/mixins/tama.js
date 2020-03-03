@@ -381,12 +381,12 @@ export const tama = {
             store.setValue('centerLabelText', center)
             store.setValue('rightLabelText', right)
         },
-        getImgUrl(img) {
-            console.log(img)
-            var images = require(img)
-            console.log(images)
-            return images
-        },
+        // getImgUrl(img) {
+        //     console.log(img)
+        //     var images = require(img)
+        //     console.log(images)
+        //     return images
+        // },
         setDeviceReady() {
             store.setValue('deviceready', true)
             console.log('deviceready')

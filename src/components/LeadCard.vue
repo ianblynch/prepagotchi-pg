@@ -54,9 +54,10 @@
 <script>
 import { store } from '../data/store.js'
 import { tama } from '../mixins/tama.js'
+import { audio } from '../mixins/audio.js'
 export default {
     name: 'LeadCard',
-    mixins: [tama],
+    mixins: [tama, audio],
 
     props: {},
     data() {
@@ -78,7 +79,8 @@ export default {
             ])
         },
         clickedEncouragement() {
-            console.log('enc')
+            console.log('enc')            
+            this.playSfx('sfx3')
             this.score++
         },
         onResize() {

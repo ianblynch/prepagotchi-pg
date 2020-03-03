@@ -31,16 +31,6 @@ export default {
     },
     methods: {
         moveOn() {
-            // this.play('amore')
-                this.stop(
-                    'amore',
-                    () => {
-                        console.log('song stopped successfully')
-                    },
-                    err => {
-                        console.log(err)
-                    }
-                )
             let theStatus = this.storeState.prepperoniDevelopmentStatus
             if (theStatus === 'egg') {
                 store.setValue('currentGameScreen', 'EggCard', true)
