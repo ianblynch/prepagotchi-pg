@@ -41,6 +41,7 @@
 <script>
 import { store } from '../data/store.js'
 import { tama } from '../mixins/tama.js'
+import { audio } from '../mixins/audio.js'
 const cloud0 = require('../assets/pngs/cloud-0.png')
 const cloud1 = require('../assets/pngs/cloud-1.png')
 const cloud2 = require('../assets/pngs/cloud-2.png')
@@ -85,7 +86,7 @@ const liftAnimArrays = {
 }
 export default {
     name: 'LiftCard',
-    mixins: [tama],
+    mixins: [tama, audio],
     components: {},
     props: {},
     data() {

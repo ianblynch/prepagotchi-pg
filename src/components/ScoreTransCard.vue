@@ -29,6 +29,7 @@
 <script>
 import { store } from '../data/store.js'
 import { tama } from '../mixins/tama.js'
+import { audio } from '../mixins/audio.js'
 // data looks like this
 // prevGameData: {
 //     text: ['score: 30'],
@@ -37,7 +38,7 @@ import { tama } from '../mixins/tama.js'
 // }
 export default {
     name: 'ScoreTransCard',
-    mixins: [tama],
+    mixins: [tama, audio],
     data() {
         return {
             storeState: store.state,

@@ -7,7 +7,7 @@
                 :widthPercent="100"
                 :text="score"
             ></MushyText>
-            <button class="encouragement-button" @click="clickedEncouragement()">
+            <button class="encouragement-button" @click="clickedEncouragement(0)">
                 <MushyText
                     class="margin-centered"
                     :heightPercent="10"
@@ -15,7 +15,7 @@
                     text="I believe in you!"
                 ></MushyText>
             </button>
-            <button class="encouragement-button" @click="clickedEncouragement()">
+            <button class="encouragement-button" @click="clickedEncouragement(1)">
                 <MushyText
                     class="margin-centered"
                     :heightPercent="10"
@@ -23,7 +23,7 @@
                     text="Let's work together!"
                 ></MushyText>
             </button>
-            <button class="encouragement-button" @click="clickedEncouragement()">
+            <button class="encouragement-button" @click="clickedEncouragement(2)">
                 <MushyText
                     class="margin-centered"
                     :heightPercent="10"
@@ -31,7 +31,7 @@
                     text="I got the baseline!"
                 ></MushyText>
             </button>
-            <button class="encouragement-button" @click="clickedEncouragement()">
+            <button class="encouragement-button" @click="clickedEncouragement(3)">
                 <MushyText
                     class="margin-centered"
                     :heightPercent="10"
@@ -39,7 +39,7 @@
                     text="I got your back!"
                 ></MushyText>
             </button>
-            <button class="encouragement-button" @click="clickedEncouragement()">
+            <button class="encouragement-button" @click="clickedEncouragement(4)">
                 <MushyText
                     class="margin-centered"
                     :heightPercent="10"
@@ -78,9 +78,9 @@ export default {
                 `score: ${this.score}`,
             ])
         },
-        clickedEncouragement() {
+        clickedEncouragement(num) {
             console.log('enc')            
-            this.playSfx('sfx3')
+            this.playSfx(`encouragement${num}`)
             this.score++
         },
         onResize() {

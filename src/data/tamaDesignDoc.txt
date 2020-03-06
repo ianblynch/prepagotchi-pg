@@ -2,6 +2,44 @@ have lots of sounds and music
 go through mastered music and match it to the game
 have nexus screen play music from highest starred game
 add sound effects to all click options
+put border animation on click of encouragement
+
+sounds
+TamaNexus
+    on transition to game: boop on each flash
+ScoreTransCard
+    animate +1/+2 and sound on animation
+DribbleCard
+    sound on touch: different for make or miss
+    get so many in a row 
+LeadCard
+    different sounds each encouragement
+PowerStartAndStop
+    sound on push
+    sound on stop
+    make him move around the screen at different angles
+SocializeCard
+    sound on 1 correct
+    sound on 2 correct
+    sound on 3+ correct
+    sound on miss or too slow
+
+EatCard
+    make it bounce around like screen saver
+
+ShootCard
+    raising intensity sounds 1-10 for power
+    sound for shoot
+    
+    sound for make
+    sound for miss
+
+LiftCard
+
+StatsCard
+
+
+
 
 Confluence
 Prepagotchi Hi-res logo

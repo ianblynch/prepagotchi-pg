@@ -17,6 +17,7 @@
 <script>
 import { store } from '../data/store.js'
 import { tama } from '../mixins/tama.js'
+import { audio } from '../mixins/audio.js'
 
 const psns0 = require('../assets/pngs/psns-0.png')
 const psns1 = require('../assets/pngs/psns-1.png')
@@ -25,7 +26,7 @@ const psns3 = require('../assets/pngs/psns-3.png')
 
 export default {
     name: 'PowerStartAndStopCard',
-    mixins: [tama],
+    mixins: [tama, audio],
     components: {},
     props: {},
     data() {

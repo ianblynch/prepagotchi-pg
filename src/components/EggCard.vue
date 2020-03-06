@@ -11,6 +11,7 @@
 <script>
 import { store } from '../data/store.js'
 import { tama } from '../mixins/tama.js'
+import { audio } from '../mixins/audio.js'
 const hatch0 = require('../assets/pngs/hatching-0.png')
 const hatch1 = require('../assets/pngs/hatching-1.png')
 const hatch2 = require('../assets/pngs/hatching-2.png')
@@ -22,7 +23,7 @@ const egg2 = require('../assets/pngs/egg-2.png')
 const egg3 = require('../assets/pngs/egg-3.png')
 export default {
     name: 'EggCard',
-    mixins: [tama],
+    mixins: [tama, audio],
     data() {
         return {
             storeState: store.state,

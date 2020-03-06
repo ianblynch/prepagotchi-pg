@@ -1,5 +1,7 @@
 import { store } from '../data/store.js'
 import mergeImages from 'merge-images'
+import { audio } from './audio'
+import Vue from 'vue'
 
 const psns0 = require('../assets/pngs/psns-0.png')
 const psns1 = require('../assets/pngs/psns-1.png')
@@ -34,7 +36,7 @@ const highFiveHigh = require('../assets/pngs/high-five-high.png')
 const highFiveRight = require('../assets/pngs/high-five-right.png')
 const highFiveLow = require('../assets/pngs/high-five-low.png')
 const highFiveLeft = require('../assets/pngs/high-five-left.png')
-export const tama = {
+export const tama = Vue.util.mergeOptions(audio,{
     methods: {
         stepFrames(frameName, framesArray, speed, inc = 0, callback) {
             //speed can be an array or a number; lets get a value
@@ -53,7 +55,19 @@ export const tama = {
                 }
                 return
             } else {
-                this[frameName] = framesArray[inc]
+                console.log('start: '+ JSON.stringify(framesArray[inc]))
+                if (typeof framesArray[inc] === 'string'){
+                    this[frameName] = framesArray[inc]
+                } else if (typeof framesArray[inc] === 'object') {
+                    console.log('object: '+ JSON.stringify(framesArray[inc]))
+                    if (Object.keys(framesArray[inc]).indexOf('frame') >-1 && typeof framesArray[inc].frame === 'string') {
+                        this[frameName] = framesArray[inc].frame
+                    }
+                    if (Object.keys(framesArray[inc]).indexOf('sfx') > -1 && typeof framesArray[inc].sfx === 'string') {
+                        console.log('sfx: '+ framesArray[inc].sfx)
+                        this.playSfx(framesArray[inc].sfx)
+                    }
+                }
                 this.storeState[`${frameName}Timeout`] = setTimeout(() => {
                     return this.stepFrames(
                         frameName,
@@ -392,4 +406,4 @@ export const tama = {
             console.log('deviceready')
         }
     },
-}
+})

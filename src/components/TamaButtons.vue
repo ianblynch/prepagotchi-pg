@@ -1,7 +1,7 @@
 <template>
     <div id="tama-buttons" :style="containerCss">
         <div class="button-unit-container">
-            <ButtonLabel :style="labelCss" :label="leftLabelText"/>
+            <ButtonLabel :style="labelCss" :label="leftLabelText" />
             <button
                 class="tama-button three-button"
                 :style="buttonCss"
@@ -10,7 +10,11 @@
             ></button>
         </div>
         <div class="button-unit-container">
-            <ButtonLabel id="center-label" :style="[labelCss, centerLabelCss]" :label="centerLabelText"/>
+            <ButtonLabel
+                id="center-label"
+                :style="[labelCss, centerLabelCss]"
+                :label="centerLabelText"
+            />
             <button
                 class="tama-button three-button"
                 :style="[buttonCss, centerButtonCss]"
@@ -19,7 +23,7 @@
             ></button>
         </div>
         <div class="button-unit-container">
-            <ButtonLabel :style="labelCss" :label="rightLabelText"/>
+            <ButtonLabel :style="labelCss" :label="rightLabelText" />
             <button
                 class="tama-button three-button"
                 :style="buttonCss"
@@ -50,24 +54,21 @@ export default {
             centerLabelCss: {},
             leftLabelText: '',
             centerLabelText: '',
-            rightLabelText: ''
+            rightLabelText: '',
         }
     },
     methods: {
         clickedLeft() {
             store.setValue('leftButton', this.storeState.leftButton + 1)
             this.runAnimation('left-button')
-            this.playSfx('sfx0')
         },
         clickedCenter() {
             store.setValue('centerButton', this.storeState.centerButton + 1)
             this.runAnimation('center-button')
-            this.playSfx('sfx1')
         },
         clickedRight() {
             store.setValue('rightButton', this.storeState.rightButton + 1)
             this.runAnimation('right-button')
-            this.playSfx('sfx2')
         },
         setDiameter() {
             let insetHeight = this.getInsetScreenDimensions().innerHeight
@@ -127,7 +128,7 @@ export default {
     },
     beforeDestroy() {
         // this.unListen('resize', this.onResize)
-    },    
+    },
     watch: {
         'storeState.leftLabelText'() {
             console.log('left was clicked')
@@ -139,14 +140,14 @@ export default {
         },
         'storeState.rightLabelText'() {
             console.log('right was clicked')
-            this.rightLabelText =   this.storeState.rightLabelText
+            this.rightLabelText = this.storeState.rightLabelText
         },
         'storeState.insetMirrorCss': {
             deep: true,
             handler() {
                 this.onResize()
-            }
-        }
+            },
+        },
     },
 }
 </script>

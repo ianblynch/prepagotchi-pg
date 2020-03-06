@@ -17,12 +17,13 @@
 <script>
 import { store } from '../data/store.js'
 import { tama } from '../mixins/tama.js'
+import { audio } from '../mixins/audio.js'
 
 const bb32 = require('../assets/pngs/basketball32.png')
 const cloud1 = require('../assets/pngs/cloud-1.png')
 export default {
     name: 'DribbleCard',
-    mixins: [tama],
+    mixins: [tama, audio],
     components: {},
     props: {},
     data() {

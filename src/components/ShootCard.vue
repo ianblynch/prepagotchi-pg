@@ -51,6 +51,7 @@
 <script>
 import { store } from '../data/store.js'
 import { tama } from '../mixins/tama.js'
+import { audio } from '../mixins/audio.js'
 
 const emptyImg = require('../assets/pngs/empty32.png'),
     basketMakeImg = require('../assets/pngs/shoot-make.png'),
@@ -88,7 +89,7 @@ const ballArrays = {
 }
 export default {
     name: 'ShootCard',
-    mixins: [tama],
+    mixins: [tama, audio],
     components: {},
     props: {},
     data() {

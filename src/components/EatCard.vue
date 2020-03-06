@@ -17,13 +17,14 @@
 <script>
 import { store } from '../data/store.js'
 import { tama } from '../mixins/tama.js'
+import { audio } from '../mixins/audio.js'
 
 const steakImg = require('../assets/pngs/steak-icon.png')
 const cloud2 = require('../assets/pngs/cloud-2.png')
 
 export default {
     name: 'EatCard',
-    mixins: [tama],
+    mixins: [tama, audio],
     components: {},
     props: {},
     data() {

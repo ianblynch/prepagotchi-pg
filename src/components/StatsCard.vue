@@ -29,6 +29,7 @@
 <script>
 import { store } from '../data/store.js'
 import { tama } from '../mixins/tama.js'
+import { audio } from '../mixins/audio.js'
 const aspects = [
     'belly',
     'brain',
@@ -79,7 +80,7 @@ const icons = {
 }
 export default {
     name: 'StatsCard',
-    mixins: [tama],
+    mixins: [tama, audio],
     components: {},
     props: {},
     data() {

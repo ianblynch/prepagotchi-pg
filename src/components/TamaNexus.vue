@@ -71,7 +71,7 @@
                                 :widthPercent="50"
                                 text="switch to mindshaft"
                             ></MushyText>
-                        </button> -->
+                        </button>-->
                         <div class="prepperoni-box">
                             <img
                                 id="prepperoni-img"
@@ -171,7 +171,7 @@ export default {
             prepperoniLeftMargin: '25%',
             classicBallInterval: '',
             bigIconFrame: '',
-            prepperoniTransformScaleX: 1
+            prepperoniTransformScaleX: 1,
         }
     },
     props: {},
@@ -274,8 +274,12 @@ export default {
                 this.selected = this.selected - 1
             }
         },
-        makeTransitionFrames(frame) {
-            return [frame, empty32, frame, empty32, frame]
+        makeTransitionFrames(frame, sfx0, sfx1) {
+            let theArray = [frame, empty32, frame, empty32, frame]
+            if (sfx0 && typeof sfx0 === 'string') {
+                theArray = [{frame: frame, sfx: sfx0}, empty32, {frame: frame, sfx: sfx0}, empty32, {frame: frame, sfx: sfx1}]
+            }
+            return theArray
         },
         makeTransitionSpeeds() {
             return [300, 150, 300, 150, 750]
@@ -287,7 +291,7 @@ export default {
                     store.setValue('transitioningToGame', true)
                     this.stepFrames(
                         'bigIconFrame',
-                        this.makeTransitionFrames(dribblingIcon),
+                        this.makeTransitionFrames(dribblingIcon, 'nexusPrimeSwitch', 'nexusLastSwitch'),
                         this.makeTransitionSpeeds(),
                         0,
                         () => {
@@ -305,7 +309,7 @@ export default {
                     store.setValue('transitioningToGame', true)
                     this.stepFrames(
                         'bigIconFrame',
-                        this.makeTransitionFrames(leadIcon),
+                        this.makeTransitionFrames(leadIcon, 'nexusPrimeSwitch', 'nexusLastSwitch'),
                         this.makeTransitionSpeeds(),
                         0,
                         () => {
@@ -323,7 +327,7 @@ export default {
                     store.setValue('transitioningToGame', true)
                     this.stepFrames(
                         'bigIconFrame',
-                        this.makeTransitionFrames(psnsIcon),
+                        this.makeTransitionFrames(psnsIcon, 'nexusPrimeSwitch', 'nexusLastSwitch'),
                         this.makeTransitionSpeeds(),
                         0,
                         () => {
@@ -344,7 +348,7 @@ export default {
                     store.setValue('transitioningToGame', true)
                     this.stepFrames(
                         'bigIconFrame',
-                        this.makeTransitionFrames(socializeIcon),
+                        this.makeTransitionFrames(socializeIcon, 'nexusPrimeSwitch', 'nexusLastSwitch'),
                         this.makeTransitionSpeeds(),
                         0,
                         () => {
@@ -362,7 +366,7 @@ export default {
                     store.setValue('transitioningToGame', true)
                     this.stepFrames(
                         'bigIconFrame',
-                        this.makeTransitionFrames(eatIcon),
+                        this.makeTransitionFrames(eatIcon, 'nexusPrimeSwitch', 'nexusLastSwitch'),
                         this.makeTransitionSpeeds(),
                         0,
                         () => {
@@ -380,7 +384,7 @@ export default {
                     store.setValue('transitioningToGame', true)
                     this.stepFrames(
                         'bigIconFrame',
-                        this.makeTransitionFrames(shootIcon),
+                        this.makeTransitionFrames(shootIcon, 'nexusPrimeSwitch', 'nexusLastSwitch'),
                         this.makeTransitionSpeeds(),
                         0,
                         () => {
@@ -398,7 +402,7 @@ export default {
                     store.setValue('transitioningToGame', true)
                     this.stepFrames(
                         'bigIconFrame',
-                        this.makeTransitionFrames(liftIcon),
+                        this.makeTransitionFrames(liftIcon, 'nexusPrimeSwitch', 'nexusLastSwitch'),
                         this.makeTransitionSpeeds(),
                         0,
                         () => {
@@ -416,7 +420,7 @@ export default {
                     store.setValue('transitioningToGame', true)
                     this.stepFrames(
                         'bigIconFrame',
-                        this.makeTransitionFrames(statsIcon),
+                        this.makeTransitionFrames(statsIcon, 'nexusPrimeSwitch', 'nexusLastSwitch'),
                         this.makeTransitionSpeeds(),
                         0,
                         () => {
@@ -461,47 +465,58 @@ export default {
             this.setImageRendering()
         },
         loadAmore() {
-            this.loadSong('amore','audio/amore2.mp3', .03, 1, 0)
-
-
+            this.loadSong('amore', 'audio/amore2.mp3', 0.03, 1, 0)
         },
         playAmore2() {
             store.setValue('newLoopingSong', 'amore2')
         },
         stopAmore() {
-            this.stop('amore',
-                            () => {
-                                console.log('song stopped successfully')
-                            },
-                            err => {
-                                console.log(err)
-                            })
+            this.stop(
+                'amore',
+                () => {
+                    console.log('song stopped successfully')
+                },
+                err => {
+                    console.log(err)
+                }
+            )
         },
         unloadAmore() {
-            this.unload('amore',
-                            () => {
-                                console.log('song unloaded successfully')
-                            },
-                            err => {
-                                console.log(err)
-                            })
+            this.unload(
+                'amore',
+                () => {
+                    console.log('song unloaded successfully')
+                },
+                err => {
+                    console.log(err)
+                }
+            )
         },
         switchToMindshaft() {
             store.setValue('newLoopingSong', 'mindshaft')
-        }
+        },
     },
     watch: {
         'storeState.leftButton'() {
             console.log('left was clicked')
-            if (!this.storeState.transitioningToGame){this.moveCursorLeft()}            
+            if (!this.storeState.transitioningToGame) {
+                this.moveCursorLeft()
+                this.playSfx('nexusLeft')
+            }
         },
         'storeState.centerButton'() {
             console.log('center was clicked')
-            if (!this.storeState.transitioningToGame){this.pressSelect()}            
+            if (!this.storeState.transitioningToGame) {
+                this.pressSelect()
+                this.playSfx('nexusCenter')
+            }
         },
         'storeState.rightButton'() {
             console.log('right was clicked')
-            if (!this.storeState.transitioningToGame){this.moveCursorRight()}            
+            if (!this.storeState.transitioningToGame) {
+                this.moveCursorRight()
+                this.playSfx('nexusRight')
+            }
         },
     },
     computed: {
@@ -530,7 +545,7 @@ export default {
         },
         dynamicPrepperoniFrame() {
             return this.getImgUrl(this.prepperoniFrame)
-        }
+        },
     },
     mounted() {
         this.updateClassicBallUnlockedPages()

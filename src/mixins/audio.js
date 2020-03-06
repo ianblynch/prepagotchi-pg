@@ -13,7 +13,21 @@ const screenSongs = {
     StatsCard: 'time',
     ClassicBall: 'victory',
 }
-const songs = [
+const sfxMap = {
+    //TamaNexus
+    nexusLeft: 'sfx0',
+    nexusCenter: 'sfx1',
+    nexusRight: 'sfx2',
+    nexusPrimeSwitch: 'sfx0',
+    nexusLastSwitch: 'sfx4',
+
+    encouragement0: 'sfx3',
+    encouragement1: 'sfx3',
+    encouragement2: 'sfx3',
+    encouragement3: 'sfx3',
+    encouragement4: 'sfx3'
+}
+const toLoad = [
     'alien',
     'amore',
     'epilogue-snare',
@@ -43,7 +57,6 @@ export const audio = {
             errorCallback
         ) {
             let wna = window.plugins.NativeAudio
-            console.log('loading song: ' + id + ' from ' + assetPath)
             wna.preloadComplex(
                 id,
                 assetPath,
@@ -75,7 +88,6 @@ export const audio = {
             )
         },
         play(id, successCallback, errorCallback, completeCallback) {
-            console.log('running play')
             let wna = window.plugins.NativeAudio
             wna.play(id, successCallback, errorCallback, completeCallback)
         },
@@ -84,7 +96,6 @@ export const audio = {
             wna.loop(id, successCallback, errorCallback)
         },
         stop(id, successCallback, errorCallback) {
-            console.log('running stop')
             let wna = window.plugins.NativeAudio
             wna.stop(id, successCallback, errorCallback)
         },
@@ -102,14 +113,9 @@ export const audio = {
             )
         },
         checkIfShouldChangeSong() {
-            console.log('cheking if should change song')
             let newScreen = store.getValue('currentGameScreen')
-            console.log('screen to check: ' + newScreen)
             if (Object.keys(screenSongs).indexOf(newScreen) > -1) {
-                console.log('screen has song')
                 let oldSong = store.getValue('loopingSong')
-                console.log('oldSong: ' + oldSong)
-                console.log('newSong: ' + screenSongs[newScreen])
                 if (screenSongs[newScreen] !== oldSong) {
                     store.setValue('newLoopingSong', screenSongs[newScreen])
                 }
@@ -121,13 +127,13 @@ export const audio = {
             //first stop oldSong
             this.stop(
                 oldSong,
-                () => console.log(oldSong + ' stopped successfully'),
+                undefined,
                 err => console.log(err)
             )
             //then start looping newSong
             this.loop(
                 newSong,
-                () => console.log(newSong + ' looping successfully'),
+                undefined,
                 err => console.log(err)
             )
             //then set oldSong to newSong value
@@ -135,7 +141,7 @@ export const audio = {
         },
         loadAllAudio() {
             // let list = songs.concat(sfx)
-            songs.forEach(song => {
+            toLoad.forEach(song => {
                 let ap = `audio/${song}.mp3`
                 this.loadSong(
                     song,
@@ -143,37 +149,32 @@ export const audio = {
                     0.03,
                     1,
                     0,
-                    () => console.log(song + ' loaded successfully'),
-                    err => console.log(err)
-                )
-            })
-        },
-        loadAllSfx() {
-            sfx.forEach(sound => {
-                let ap = `audio/${sound}.mp3`
-                this.loadSong(
-                    sound,
-                    ap,
-                    0.03,
-                    1,
-                    0,
-                    () => console.log(sound + ' loaded successfully'),
+                    undefined,
                     err => console.log(err)
                 )
             })
         },
         playSfx(id) {
-            console.log('running play sfx')
+            let sound = id
+            //assign id to sound
+            //check if is a key of sfxMap
+            //if is a key of sfxMap, use that val as id
+            if ( Object.keys(sfxMap).indexOf(id) > -1 ) {
+                sound = sfxMap[id]
+            }
+            // console.log('id: '+id)
+            // console.log('sound: '+sound)
+
+            // console.log('running play sfx')
             this.stop(
-                id,
-                () => console.log(id + ' stopped successfully'),
+                sound,
+                undefined,
                 err => console.log(err)
             )
             this.play(
-                id,
-                () => console.log(id + ' started successfully'),
-                err => console.log(err),
-                () => console.log(id + ' completed successfully')
+                sound,
+                ()=>{console.log(sound+' played')},
+                err => console.log(err)
             )
         },
     },
