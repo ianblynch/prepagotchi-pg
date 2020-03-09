@@ -103,7 +103,8 @@ export default {
             prepperoniFrame: psns0,
             resSquareCss: {},
             screenX: 0,
-            responsiveImg: {}
+            responsiveImg: {},
+            correctInARow: 0,
         }
     },
     methods: {
@@ -127,12 +128,21 @@ export default {
             )
             if (target === this.currentTarget) {
                 this.score++
+                this.correctInARow++
+                if (this.correctInARow === 1) {
+                    this.playSfx('liftOneCorrect')
+                } else if (this.correctInARow === 2) {
+                    this.playSfx('liftTwoCorrect')
+                } else {
+                    this.playSfx('liftThreeCorrect')
+                }
                 this.stepFrames(
                     frameName,
                     liftAnimArrays[`${frameName}Win`],
                     150
                 )
             } else {
+                this.playSfx('liftMiss')
                 this.stepFrames(
                     frameName,
                     liftAnimArrays[`${frameName}Lose`],

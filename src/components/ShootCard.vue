@@ -63,28 +63,28 @@ const emptyImg = require('../assets/pngs/empty32.png'),
     burstingImg = require('../assets/pngs/bursting-bar.png')
 const ballArrays = {
     makeLeftCSSArray: [
-        { top: '10%', left: '10%' },
-        { top: '37%', left: '35%' },
-        { top: '81%', left: '35%' },
-        { display: 'none' },
+        {css: { top: '10%', left: '10%' }},
+        {css: { top: '37%', left: '35%' }},
+        {css: { top: '81%', left: '35%' }},
+        {css: { display: 'none' }},
     ],
     makeRightCSSArray: [
-        { top: '10%', right: '10%' },
-        { top: '37%', left: '35%' },
-        { top: '81%', left: '35%' },
-        { display: 'none' },
+        {css: { top: '10%', right: '10%' }},
+        {css: { top: '37%', left: '35%' }},
+        {css: { top: '81%', left: '35%' }},
+        {css: { display: 'none' }},
     ],
     missLeftCSSArray: [
-        { top: '10%', left: '10%' },
-        { top: '37%', left: '15%' },
-        { top: '75%', left: '5%' },
-        { display: 'none' },
+        {css: { top: '10%', left: '10%' }},
+        {css: { top: '37%', left: '15%' }},
+        {css: { top: '75%', left: '5%' }},
+        {css: { display: 'none' }},
     ],
     missRightCSSArray: [
-        { top: '10%', right: '10%' },
-        { top: '37%', right: '15%' },
-        { top: '75%', right: '5%' },
-        { display: 'none' },
+        {css: { top: '10%', right: '10%' }},
+        {css: { top: '37%', right: '15%' }},
+        {css: { top: '75%', right: '5%' }},
+        {css: { display: 'none' }},
     ],
 }
 export default {
@@ -128,17 +128,20 @@ export default {
             if (this.gameState === 'powering') {
                 if (this.powerLevel < this.maxPower) {
                     this.powerLevel = this.powerLevel + 1
+                    this.playSfx(`shootPower${this.powerLevel}`)
                     if (this.powerLevel === 0) {
                         this.prepperoniImage = poweringImg
                     }
                 } else {
                     this.powerLevel = -1
+                    this.playSfx('shootPowerReset')
                 }
             }
         },
         shootCenterButton() {},
         shootRightButton() {
             this.gameState = 'shooting'
+            this.playSfx('shootShoot')
             this.prepperoniImage = releaseImg
             let powerPercent = this.powerLevel / 10 + 0.1
             let theRand = Math.random()
@@ -151,22 +154,28 @@ export default {
             console.log('isUnderMaxChance: ' + isUnderMaxChance)
             this.attempts++
             if (isUnderPowerLevel && isUnderMaxChance) {
-                console.log('swish!')
-                this.resultText = 'swish!'
-                this.ballImage = ballImg
-                this.setBallCSS('make')
-                this.score++
+                setTimeout(() => {
+                    console.log('swish!')
+                    this.playSfx('shootMake')
+                    this.resultText = 'swish!'
+                    this.ballImage = ballImg
+                    this.setBallCSS('make')
+                    this.score++
+                }, 200)
             } else {
-                console.log('clank!')
-                this.resultText = 'clank!'
-                this.ballImage = ballImg
-                this.setBallCSS('miss')
+                setTimeout(() => {
+                    console.log('clank!')
+                    this.playSfx('shootMiss')
+                    this.resultText = 'clank!'
+                    this.ballImage = ballImg
+                    this.setBallCSS('miss')
+                }, 200)
             }
             this.storeState.shootTransferTimeout = setTimeout(() => {
                 this.ballImage = ballImg
                 this.powerLevel = -1
                 this.gameState = 'powering'
-            }, 200)
+            }, 400)
         },
         setBallCSS(makeStatus) {
             let theRand = Math.random()

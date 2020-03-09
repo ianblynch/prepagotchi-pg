@@ -81,6 +81,7 @@ export default {
             document.documentElement.style.setProperty('--wideBorderRadius', Math.floor(insetHeight *.15) + 'px')
             document.documentElement.style.setProperty('--medBorderRadius', Math.floor(insetHeight *.1) + 'px')
             document.documentElement.style.setProperty('--thinBorderRadius', Math.floor(insetHeight *.07) + 'px')
+            document.documentElement.style.setProperty('--scoreTransPlusYTranslate', Math.floor(insetHeight *.1) + 'px')
         }
     },
 }

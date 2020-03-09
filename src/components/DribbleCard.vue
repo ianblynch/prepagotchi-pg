@@ -1,5 +1,8 @@
 <template>
-    <div class="dribble-card">
+    <div 
+        class="dribble-card"
+        @click="e=>onClick(e)"
+    >
         <div class="h-full">
             <MushyText
                 class="margin-centered"
@@ -7,7 +10,7 @@
                 :widthPercent="100"
                 :text="score"
             ></MushyText>
-            <div id="moving-ball" class="zoom-animation" @click="clickedBall()" :style="clickableCss">
+            <div id="moving-ball" class="zoom-animation" :style="clickableCss">
                 <img id="ball" :src="ballFrame" />
             </div>
         </div>
@@ -32,7 +35,7 @@ export default {
             score: 0,
             gameRegister: [],
             ballFrame: bb32,
-            clickableGameImgSize: '0px'
+            clickableGameImgSize: '150px'
         }
     },
     methods: {
@@ -52,10 +55,14 @@ export default {
         clickedBall() {
             this.score++
             this.ballFrame = cloud1
+            this.playSfx('dribbleTouchBall')
             this.storeState.dribbleTimeout = setTimeout(() => {
                 this.ballFrame = bb32
                 this.setNewBallPosition()
             }, 125)
+        },
+        missedBall() {
+            this.playSfx('dribbleTouchMiss')
         },
         setNewBallPosition() {
             console.log('running set ball')
@@ -63,15 +70,26 @@ export default {
             if (theBall) {
                 const ballWidth = theBall.clientWidth
                 const ballHeight = theBall.clientHeight
-                const inset = this.getInsetScreenDimensions()
-                theBall.style.top = this.randomPxUpTo(inset.innerHeight, ballHeight)
-                theBall.style.left = this.randomPxUpTo(inset.innerWidth, ballWidth)
+                const dribble = this.getScreenDimensions('.dribble-card')
+                theBall.style.top = this.randomPxUpTo(dribble.innerHeight, ballHeight)
+                theBall.style.left = this.randomPxUpTo(dribble.innerWidth, ballWidth)
             }
         },
         onResize() {
             this.setNewBallPosition()
             this.setClickableGameImgSize()
             this.setImageRendering()
+        },
+        onClick(e) {
+            // console.log('dribbleClick')
+            // console.log(e)
+            if (e.target.id === 'ball') {
+                console.log('hit')
+                this.clickedBall()
+            } else {
+                this.missedBall()
+                console.log('miss')
+            }
         }
     },
     mounted() {
@@ -81,7 +99,7 @@ export default {
         setTimeout(() => {
             this.endGame()
         }, 30000)
-        this.setLabelText("***", "***", "***")
+        this.setLabelText("***", "***", "***")        
     },
     beforeDestroy() {
         this.unListen('resize', this.onResize)

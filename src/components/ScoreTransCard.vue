@@ -2,12 +2,13 @@
     <div class="h-full">
         <div id="score-trans-card">
             <div v-if="storeState.prevGameData.icon" id="score-trans-icon-pair-container">
-                <div id="score-trans-icon-container">
+                <div id="score-trans-icon-container" class="fade-in">
                     <img id="score-trans-icon-img" :src="storeState.prevGameData.icon" />
                 </div>
                 <MushyText
+                    id="animated-plus"
                     v-if="storeState.prevGameData.mod"
-                    class="margin-centered"
+                    class="margin-centered slide-in-bottom"
                     :style="{margin:0}"
                     :heightPercent="10"
                     :widthPercent="20"
@@ -16,7 +17,7 @@
             </div>
             <MushyText
                 :key="`score-text-${textIndex}`"
-                class="score-text margin-centered"
+                class="score-text margin-centered fade-in-delay"
                 v-for="(text, textIndex) in storeState.prevGameData.text"
                 :heightPercent="10"
                 :widthPercent="100"
@@ -49,22 +50,35 @@ export default {
         moveOn() {
             if (this.canMoveOn) {
                 store.setValue('currentGameScreen', 'TamaNexus', true)
+                this.playReturnSfx()
             }
         },
         onResize() {
             this.setImageRendering()
         },
+        playPlusSfx() {
+            console.log('playing plus')
+            this.playSfx('scoreTransPlus')
+        },
+        playReturnSfx() {
+            this.playSfx('scoreTransReturn')
+        }
     },
     mounted() {
         setTimeout(() => {
             this.canMoveOn = true
+            this.setLabelText("home", "home", "home")
         }, 2000)
         setTimeout(() => {
             store.setValue('currentGameScreen', 'TamaNexus', true)
+            this.playReturnSfx()
         }, 5000)
         this.onResize()
+        document.querySelector('#animated-plus').addEventListener('animationstart', () => {
+            this.playPlusSfx()
+        })
         this.listen('resize', this.onResize)
-        this.setLabelText("home", "home", "home")
+        this.setLabelText("***", "***", "***")
     },
     watch: {
         'storeState.leftButton'() {

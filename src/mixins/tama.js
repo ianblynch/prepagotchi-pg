@@ -55,17 +55,20 @@ export const tama = Vue.util.mergeOptions(audio,{
                 }
                 return
             } else {
-                console.log('start: '+ JSON.stringify(framesArray[inc]))
+                // console.log('start: '+ JSON.stringify(framesArray[inc]))
                 if (typeof framesArray[inc] === 'string'){
                     this[frameName] = framesArray[inc]
                 } else if (typeof framesArray[inc] === 'object') {
-                    console.log('object: '+ JSON.stringify(framesArray[inc]))
+                    // console.log('object: '+ JSON.stringify(framesArray[inc]))
                     if (Object.keys(framesArray[inc]).indexOf('frame') >-1 && typeof framesArray[inc].frame === 'string') {
                         this[frameName] = framesArray[inc].frame
                     }
                     if (Object.keys(framesArray[inc]).indexOf('sfx') > -1 && typeof framesArray[inc].sfx === 'string') {
-                        console.log('sfx: '+ framesArray[inc].sfx)
+                        // console.log('sfx: '+ framesArray[inc].sfx)
                         this.playSfx(framesArray[inc].sfx)
+                    }
+                    if (Object.keys(framesArray[inc]).indexOf('css') > -1 && typeof framesArray[inc].css === 'object') {
+                        this[frameName]= framesArray[inc].css
                     }
                 }
                 this.storeState[`${frameName}Timeout`] = setTimeout(() => {
@@ -200,6 +203,19 @@ export const tama = Vue.util.mergeOptions(audio,{
             }
             return theDimensions
         },
+        getScreenDimensions(query){
+            const theEl = document.querySelector(query)
+            let inner = this.innerDimensions(theEl)
+            let theDimensions = {
+                top: this.getOffset(theEl),
+                left: this.getOffset(theEl, true),
+                width: theEl.offsetWidth,
+                height: theEl.offsetHeight,
+                innerWidth: inner.width,
+                innerHeight: inner.height,
+            }
+            return theDimensions
+        },
         getInsetScreenDimensionsForCanvas() {
             const theCanvas = document.querySelector('#bg-canvas')
             const theInset = document.querySelector('.inset-screen')
@@ -320,6 +336,7 @@ export const tama = Vue.util.mergeOptions(audio,{
                 ? (this.clickableGameImgSize = pixels)
                 : null
         },
+        
         setImageRendering() {
             this.$nextTick().then(() => {
                 console.log('setImageRendering')

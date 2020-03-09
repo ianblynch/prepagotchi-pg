@@ -1,5 +1,8 @@
 <template>
-    <div id="eat-card">
+    <div 
+    id="eat-card"
+    @click="e=>onClick(e)"
+    >
         <div class="h-full">
             <MushyText
                 class="margin-centered"
@@ -7,7 +10,7 @@
                 :widthPercent="100"
                 :text="score"
             ></MushyText>
-            <div id="moving-food" @click="clickedFood()" class="spinning-clockwise" :style="clickableCss">
+            <div id="moving-food" class="spinning-clockwise" :style="clickableCss">
                 <img id="food-img" :src="foodImg" />
             </div>
         </div>
@@ -21,7 +24,6 @@ import { audio } from '../mixins/audio.js'
 
 const steakImg = require('../assets/pngs/steak-icon.png')
 const cloud2 = require('../assets/pngs/cloud-2.png')
-
 export default {
     name: 'EatCard',
     mixins: [tama, audio],
@@ -33,7 +35,7 @@ export default {
             score: 0,
             gameRegister: [],
             foodImg: steakImg,
-            clickableGameImgSize: '0px'
+            clickableGameImgSize: '150px'
         }
     },
     methods: {
@@ -53,10 +55,14 @@ export default {
         clickedFood() {
             this.score++
             this.foodImg = cloud2
+            this.playSfx('eatTouchFood')
             this.storeState.foodTimeout = setTimeout(() => {
                 this.foodImg = steakImg
                 this.setNewFoodPosition()
             }, 125)
+        },
+        missedFood() {
+            this.playSfx('eatTouchMiss')
         },
         setNewFoodPosition() {
             console.log('running set food')
@@ -64,15 +70,26 @@ export default {
             if (theFood) {                
                 const foodWidth = theFood.clientWidth
                 const foodHeight = theFood.clientHeight
-                const inset = this.getInsetScreenDimensions()
-                theFood.style.top = this.randomPxUpTo(inset.innerHeight, foodHeight)
-                theFood.style.left = this.randomPxUpTo(inset.innerWidth, foodWidth)
+                const foodCard = this.getScreenDimensions('#eat-card')
+                theFood.style.top = this.randomPxUpTo(foodCard.innerHeight, foodHeight)
+                theFood.style.left = this.randomPxUpTo(foodCard.innerWidth, foodWidth)
             }
         },
         onResize() {
             this.setNewFoodPosition()
             this.setClickableGameImgSize()
             this.setImageRendering()
+        },
+        onClick(e) {
+            // console.log('dribbleClick')
+            // console.log(e)
+            if (e.target.id === 'food-img') {
+                console.log('hit')
+                this.clickedFood()
+            } else {
+                this.missedFood()
+                console.log('miss')
+            }
         }
     },
     mounted() {

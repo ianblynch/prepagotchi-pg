@@ -54,12 +54,14 @@ export default {
         },
         clickedPush() {
             this.animatePush()
+            this.playSfx('powerPush')
             console.log('push')
             this.gameRegister.push('push')
             this.checkForScore()
         },
         clickedStop() {
             this.animateStop()
+            this.playSfx('powerStop')
             console.log('stop')
             this.gameRegister.push('stop')
             this.checkForScore()

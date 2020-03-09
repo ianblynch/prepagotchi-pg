@@ -20,12 +20,53 @@ const sfxMap = {
     nexusRight: 'sfx2',
     nexusPrimeSwitch: 'sfx0',
     nexusLastSwitch: 'sfx4',
-
-    encouragement0: 'sfx3',
-    encouragement1: 'sfx3',
-    encouragement2: 'sfx3',
-    encouragement3: 'sfx3',
-    encouragement4: 'sfx3'
+    //ScoreTransCard
+    scoreTransPlus: 'sfx1',
+    scoreTransReturn: 'sfx0',
+    //DribbleCard
+    dribbleTouchBall: 'sfx1',
+    dribbleTouchMiss: 'sfx3',
+    //LeadCard
+    leadEncouragement0: 'sfx3',
+    leadEncouragement1: 'sfx3',
+    leadEncouragement2: 'sfx3',
+    leadEncouragement3: 'sfx3',
+    leadEncouragement4: 'sfx3',
+    //PowerStartAndStop
+    powerPush: 'sfx4',
+    powerStop: 'sfx0',
+    //SocializeCard
+    socializeOneCorrect: 'sfx0',
+    socializeTwoCorrect: 'sfx0',
+    socializeThreeCorrect: 'sfx0',
+    socializeMiss: 'sfx1',
+    //EatCard
+    eatTouchFood: 'sfx1',
+    eatTouchMiss: 'sfx3',
+    eatTouchBounce: 'sfx4',
+    //ShootCard
+    shootPower0: 'sfx2',
+    shootPower1: 'sfx2',
+    shootPower2: 'sfx2',
+    shootPower3: 'sfx2',
+    shootPower4: 'sfx2',
+    shootPower5: 'sfx2',
+    shootPower6: 'sfx2',
+    shootPower7: 'sfx2',
+    shootPower8: 'sfx2',
+    shootPower9: 'sfx2',
+    shootPowerReset: 'sfx3',
+    shootShoot: 'sfx0',
+    shootMake: 'sfx4',
+    shootMiss: 'sfx1',
+    //LiftCard
+    liftOneCorrect: 'sfx0',
+    liftTwoCorrect: 'sfx0',
+    liftThreeCorrect: 'sfx0',
+    liftMiss: 'sfx1',
+    //StatsCard
+    statsPressHome: 'sfx1',
+    statsPressCWB: 'sfx4'
 }
 const toLoad = [
     'alien',

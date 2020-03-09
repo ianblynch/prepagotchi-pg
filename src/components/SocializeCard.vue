@@ -29,7 +29,6 @@
                 <div class="grid-cell"></div>
             </div>
             <MushyText
-                id="socialize-prompt-span"
                 class="margin-centered"
                 :heightPercent="10"
                 :widthPercent="100"
@@ -95,6 +94,7 @@ export default {
             resSquareCss: {},
             screenX: 0,
             responsiveImg: {},
+            correctInARow: 0,
         }
     },
     methods: {
@@ -118,12 +118,21 @@ export default {
             )
             if (target === this.currentTarget) {
                 this.score++
+                this.correctInARow++
+                if (this.correctInARow === 1) {
+                    this.playSfx('socializeOneCorrect')
+                } else if (this.correctInARow === 2) {
+                    this.playSfx('socializeTwoCorrect')
+                } else {
+                    this.playSfx('socializeThreeCorrect')
+                }
                 this.stepFrames(
                     frameName,
                     socializeAnimArrays[`${frameName}Win`],
                     150
                 )
             } else {
+                this.playSfx('socializeMiss')
                 this.stepFrames(
                     frameName,
                     socializeAnimArrays[`${frameName}Lose`],

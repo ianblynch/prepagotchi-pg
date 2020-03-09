@@ -80,7 +80,7 @@ export default {
         },
         clickedEncouragement(num) {
             console.log('enc')            
-            this.playSfx(`encouragement${num}`)
+            this.playSfx(`leadEncouragement${num}`)
             this.score++
         },
         onResize() {
